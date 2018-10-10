@@ -1,10 +1,23 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LongestPiece {
+    static boolean isNumeric(String str) {
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(str);
+        return isNum.matches();
+    }
+
     public static void main(String args[]) {
         if (args == null || args.length == 0) {
             System.out.println("No data has been input.");
             return;
         }
         for (String num : args) {
+            if (!isNumeric(num)) {
+                System.out.println("Illegal digital format: " + num + "\n");
+                continue;
+            }
             int n = Integer.valueOf(num);
             String b = Integer.toBinaryString(n);
             System.out.println("The binary sequence of " + num + " is " + b);
