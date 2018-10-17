@@ -2,7 +2,8 @@ class BankAcconut {
     String name;
     int number;
     double num;
-
+    BankAcconut() {
+    }
     BankAcconut(String name, int number, double num) {
         this.name = name;
         this.num = num;
