@@ -15,6 +15,6 @@ public class Point {
 
     @Override
     public String toString(){
-        return "("+Double.toString(xCoordinate)+","+Double.toString(yCoordinate)+")";
+        return "(xCoordinate="+Double.toString(xCoordinate)+", yCoordinate="+Double.toString(yCoordinate)+")";
     }
 }
