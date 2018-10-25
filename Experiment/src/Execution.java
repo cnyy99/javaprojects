@@ -25,33 +25,6 @@ class Execution implements Execute {
             }
             currNumber--;
             currPos= (int) ((currPos+currStep-1)%currNumber);
-//            currStep += data[currPos];
-//            for (int i = 0; i < currNumber ; i++) {
-//                System.out.print(data[i]+"  ");
-//            }
-//            System.out.println("\n杀死的人为: "+ data[currPos] + "   位置为: "+currPos+"   此时数组长度为: "+ currNumber+ "  步长为: "+currStep);
-//            for (int i = currPos; i < currNumber - 1; i++) {
-//                data[i] = data[i + 1];
-//            }
-//            currNumber--;
-//            if(currPos+currStep<currNumber)
-//            {
-//                currPos=(int)(currPos+currStep-1);
-//                continue;
-//            }
-//            long temp = currStep +currPos-1;
-//            if (currPos == currNumber) {
-//                currPos = 0;
-//            }
-//            currPos = (int) (temp + 1) % currNumber;
-//            if (currPos == 0) {
-//                currPos = currNumber-1;
-//                continue;
-//            }
-//            if(currPos>=1)
-//            {
-//                currPos--;
-//            }
         }
         //请添加自己的代码
     }
