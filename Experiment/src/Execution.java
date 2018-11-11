@@ -19,13 +19,12 @@ class Execution implements Execute {
 
     public void execute() {
         while (currNumber != 1) {
-            currStep+=data[currPos];
-            for (int i = currPos; i < currNumber - 1; i++) {
-                data[i] = data[i + 1];
-            }
-            currNumber--;
-            currPos= (int) ((currPos+currStep-1)%currNumber);
-        }
+            currStep += data[currPos];  //更新步长
+            //将处死的犯人清除
+            System.arraycopy(data, currPos + 1, data, currPos, currNumber - 1 - currPos);
+            currNumber--;           //总犯人人数减少一人
+            currPos = (int) ((currPos + currStep - 1) % currNumber); //计算下一个要被处死的犯人在数组中的位置
+        }       //将步长加上当前位置减一再对人总数取余,即为下一个的位置
         //请添加自己的代码
     }
     //请添加所需成员变量和成员方法：
