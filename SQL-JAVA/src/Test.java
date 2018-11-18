@@ -6,13 +6,11 @@ public class Test {
     static ResultSet rs = null;
 
     public static void main(String[] args) {
-
-
         try {
             conn = ConnectionSQL("EDUCATION", "student", "student");
             stmt = conn.createStatement();
             printAll();
-            Stduent stu = new Stduent("1501109", "黄文雅", "女", "1997-03-02", "09999", "20");
+            Student stu = new Student("1501109", "黄文雅", "女", "1997-03-02", "09999", "20");
 //            Insert(stu);
             Update("delete from student where name='黄文雅'");
             printAll();
@@ -38,7 +36,7 @@ public class Test {
         return null;
     }
 
-    public static void Insert(Stduent stu) {
+    public static void Insert(Student stu) {
         try {
             String sql = "INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) VALUES(" + "\'" + stu.getNo() + "\'," + "\'" + stu.getName() + "\'," + "\'" + stu.getSex() + "\'," + "\'" + stu.getBirth() + "\'," + "\'" + stu.getClassno() + "\'," + stu.getAge() + ")";
             System.out.println(sql);
@@ -49,7 +47,7 @@ public class Test {
     }
 
     public static boolean Update(String sql) {
-        try{
+        try {
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
