@@ -4,9 +4,9 @@ public class Student {
     private String sex;
     private String birth;
     private String classno;
-    private String age;
+    private int age;
 
-    public Student(String no, String name, String sex, String birth, String classno, String age) {
+    public Student(String no, String name, String sex, String birth, String classno, int age) {
         this.no = no;
         this.name = name;
         this.sex = sex;
@@ -36,7 +36,7 @@ public class Student {
 
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -61,7 +61,7 @@ public class Student {
         return classno;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 }

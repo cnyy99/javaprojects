@@ -10,7 +10,8 @@ public class Test {
             conn = ConnectionSQL("EDUCATION", "student", "student");
             stmt = conn.createStatement();
             printAll();
-            Student stu = new Student("1501109", "黄文雅", "女", "1997-03-02", "09999", "20");
+            Student stu = new Student("1501109", "黄文雅", "女", "1997-03-02", "09999", 20);
+//            InsertP(stu);
 //            Insert(stu);
             Update("delete from student where name='黄文雅'");
             printAll();
@@ -23,6 +24,22 @@ public class Test {
             e.printStackTrace();
         }
 
+    }
+
+    public static void InsertP(Student stu)
+    {
+        try {
+            PreparedStatement preStatement = conn.prepareStatement("INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) VALUES(?,?,?,?,?,?)");
+            preStatement.setString(1, stu.getNo());
+            preStatement.setString(2, stu.getName());
+            preStatement.setString(3, stu.getSex());
+            preStatement.setString(4, stu.getBirth());
+            preStatement.setString(5, stu.getClassno());
+            preStatement.setInt(6, stu.getAge());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Connection ConnectionSQL(String dataBaseName, String user, String password) {
