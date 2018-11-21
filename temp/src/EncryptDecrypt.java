@@ -27,8 +27,7 @@ public class EncryptDecrypt {
                         code.add(Integer.valueOf(arr[i]));
                     }
                     ArrayList<String> str = readfile(srcPath);
-                    if(str==null)
-                    {
+                    if (str == null) {
                         System.out.println("请输入(finish表示结束):加/解密  源文件  目的文件  密钥列表:");
                         continue;
                     }
@@ -41,8 +40,7 @@ public class EncryptDecrypt {
                         code.add(Integer.valueOf(arr[i]));
                     }
                     ArrayList<String> str = readfile(srcPath);
-                    if(str==null)
-                    {
+                    if (str == null) {
                         System.out.println("请输入(finish表示结束):加/解密  源文件  目的文件  密钥列表:");
                         continue;
                     }
@@ -54,8 +52,7 @@ public class EncryptDecrypt {
 
             } catch (NumberFormatException e) {
                 System.out.println("数字格式错误,请重新输入\n");
-            }catch (ArrayIndexOutOfBoundsException e)
-            {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("参数个数错误\n");
             }
             System.out.println("请输入(finish表示结束):加/解密  源文件  目的文件  密钥列表:");
@@ -130,11 +127,11 @@ public class EncryptDecrypt {
             System.out.println("原文件内容为:");
             while ((tempString = reader.readLine()) != null) {
                 stringArrayList.add(tempString);
-                System.out.println(tempString+"\n");
+                System.out.println(tempString + "\n");
             }
         } catch (IOException e) {
             System.out.println("读取文件错误\n");
-            stringArrayList=null;
+            stringArrayList = null;
         } finally {
             try {
                 if (reader != null) {
