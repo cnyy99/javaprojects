@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class Test {
-    static Connection conn = null;      //数据库了解
+    static Connection conn = null;      //数据库连接
     static Statement stmt = null;       //数据库的Statement
     static ResultSet rs = null;         //枚举查询结果
 
@@ -64,10 +64,10 @@ public class Test {
     }
 
     public static boolean TestUpdate() {
-        String sql="delete from student where name='陈楠'";
+        String sql = "delete from student where name='陈楠'";
         System.out.println("测试Update方法\n删除上述建立的学生信息前数据库数据如下所示");
         printAll();
-        boolean t= Update(sql);
+        boolean t = Update(sql);
         System.out.println("测试Update方法\n删除上述建立的学生信息后数据库数据如下所示");
         printAll();
         return t;
@@ -81,6 +81,7 @@ public class Test {
             while (rs.next()) {
                 System.out.println(rs.getString("no") + " " + rs.getString("name"));
             }
+            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,7 +92,8 @@ public class Test {
     public static Connection ConnectionSQL(String dataBaseName, String user, String password) {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //加载包
-            String url = "jdbc:sqlserver://127.0.0.1:1433;databaseName=" + dataBaseName + ";user=" + user + ";password=" + password;
+            String url = "jdbc:sqlserver://127.0.0.1:1433;databaseName=" + dataBaseName +
+                    ";user=" + user + ";password=" + password;
             return DriverManager.getConnection(url); //返回连接对象
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -111,7 +113,9 @@ public class Test {
     public static boolean Insert(Student stu) {
         try {
             //插入数据库的sql语句
-            String sql = "INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) VALUES(" + "\'" + stu.getNo() + "\',\'" + stu.getName() + "\',\'" + stu.getSex() + "\',\'" + stu.getBirth() + "\',\'" + stu.getClassno() + "\'," + stu.getAge() + ")";
+            String sql = "INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) VALUES(" + "\'" + stu.getNo() +
+                    "\',\'" + stu.getName() + "\',\'" + stu.getSex() + "\',\'" + stu.getBirth() +
+                    "\',\'" + stu.getClassno() + "\'," + stu.getAge() + ")";
             stmt.executeUpdate(sql);    //执行sql语句
             return true;
         } catch (SQLException e) {
@@ -123,7 +127,9 @@ public class Test {
     public static boolean InsertP(Student stu) {
         try {
             //构建PreparedStatement
-            PreparedStatement preStatement = conn.prepareStatement("INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) VALUES(?,?,?,?,?,?)");
+            PreparedStatement preStatement = conn.prepareStatement(
+                    "INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) " +
+                            "VALUES(?,?,?,?,?,?)");
             preStatement.setString(1, stu.getNo());
             preStatement.setString(2, stu.getName());
             preStatement.setString(3, stu.getSex());

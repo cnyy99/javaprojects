@@ -1,11 +1,12 @@
 public class Student {
-    private String no;
-    private String name;
-    private String sex;
-    private String birth;
-    private String classno;
-    private int age;
+    private String no;      //学号
+    private String name;    //姓名
+    private String sex;     //性别
+    private String birth;   //生日
+    private String classno; //班级号
+    private int age;        //年龄
 
+    //构造函数
     public Student(String no, String name, String sex, String birth, String classno, int age) {
         this.no = no;
         this.name = name;
