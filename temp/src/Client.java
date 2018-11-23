@@ -1,12 +1,11 @@
-package NetworkExperiment7;
 /*
 代码运行环境:
-1.包NetworkExperiment7下
-2.Java version
+1.Java version
     java version "9.0.4"
     Java(TM) SE Runtime Environment (build 9.0.4+11)
     Java HotSpot(TM) 64-Bit Server VM (build 9.0.4+11, mixed mode)
-3.开发工具及系统环境:
+
+2.开发工具及系统环境:
     IntelliJ IDEA 2018.1.7 (Ultimate Edition)
     Build #IU-181.5540.23, built on November 12, 2018
     Licensed to 陈 楠
@@ -15,6 +14,7 @@ package NetworkExperiment7;
     JRE: 1.8.0_152-release-1136-b43 amd64
     JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
     Windows 10 10.0
+
  */
 
 import java.io.*;       //引入io
@@ -35,7 +35,7 @@ public class Client {
             DataInputStream dataInputStream = new DataInputStream(inputStream);     //将输入流封装为DataInputStream
 
             Sender sender = new Sender(dataOutputStream);       //发送数据
-            Receiver receiver = new Receiver(dataInputStream, "Client"); //接收数据
+            Receiver receiver = new Receiver(dataInputStream, "Server"); //接收数据
 
             Sender = new Thread(sender);        //建立发送数据线程
             Receiver = new Thread(receiver);      //建立接收数据线程

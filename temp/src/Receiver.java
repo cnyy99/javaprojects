@@ -1,12 +1,11 @@
-package NetworkExperiment7;
 /*
 代码运行环境:
-1.包NetworkExperiment7下
-2.Java version
+1.Java version
     java version "9.0.4"
     Java(TM) SE Runtime Environment (build 9.0.4+11)
     Java HotSpot(TM) 64-Bit Server VM (build 9.0.4+11, mixed mode)
-3.开发工具及系统环境:
+
+2.开发工具及系统环境:
     IntelliJ IDEA 2018.1.7 (Ultimate Edition)
     Build #IU-181.5540.23, built on November 12, 2018
     Licensed to 陈 楠
@@ -15,6 +14,7 @@ package NetworkExperiment7;
     JRE: 1.8.0_152-release-1136-b43 amd64
     JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
     Windows 10 10.0
+
  */
 
 import java.io.DataInputStream;
@@ -32,7 +32,7 @@ public class Receiver implements Runnable { //实现Runnable接口
         this.character = character;               //赋值角色
     }
 
-    @Override   //实现run方法
+    @Override   //实写run方法
     public void run() {
         while (true) {      //无限循环
             try {
