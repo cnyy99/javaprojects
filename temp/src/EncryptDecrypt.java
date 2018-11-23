@@ -55,7 +55,7 @@ public class EncryptDecrypt {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("参数个数错误\n");
             }
-            System.out.println("请输入(finish表示结束):加/解密  源文件  目的文件  密钥列表:");
+            help();
         }
     }
 
@@ -87,6 +87,10 @@ public class EncryptDecrypt {
         return str;
     }
 
+    public static void help()
+    {
+        System.out.println("请输入(finish表示结束):加/解密  源文件  目的文件  密钥列表:");
+    }
     public static ArrayList<String> decrypt(ArrayList<Integer> code, ArrayList<String> str) {
         for (int j = 0; j < str.size(); j++) {
             StringBuilder[] strmap = new StringBuilder[code.size()];
