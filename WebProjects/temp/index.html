@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My web site</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<h1>Hello World!</h1>
+<script>
+    // let n=5;
+    // alert(typeof(n));
+    // let s="hello javascript";
+    // alert(typeof(s));
+    // let b=true;
+    // alert(typeof(b));
+    // let o=new Object();
+    // alert(typeof(o));
+    // let u;
+    // alert(typeof(u));
+    // alert(parseInt("    123"));
+    // alert(parseInt("    -123"));
+    // alert(parseInt("    a123"));
+    // alert(parseInt("    1234fdsfa"));
+    // alert(parseInt("    12.2"));
+    // alert(Number.MAX_VALUE);
+    // alert(Number.MIN_VALUE);
+    let str = " PHP ";
+    // alert(str.length);
+    let str2 = "角度看";
+
+
+    // // alert(str2.length);
+    //
+    // function myfuncton1() {
+    //     alert("点击了按钮1");
+    // }
+    //
+    // function myfuncton2(a, b) {
+    //     alert("fsa".replace("s", "a"));
+    //     alert("document");
+    // }
+    //
+    // let temp = "A world character";
+    // document.write(temp.toLowerCase() + "<br/>");
+    // document.write(temp.toUpperCase() + "<br/>");
+    // document.write(temp.split(" ") + "<br/>");
+    // for (let key in temp.split(" ")) {
+    //     document.write(key + "\t" + temp[key] + "<br/>");
+    // }
+    // document.write(Math.PI + "<br/>");
+    // document.write(Math.sqrt(15) + "<br/>");
+    // document.write(Math.E + "<br/>");
+    // document.write(Math.LN2 + "<br/>");
+    // document.write(Math.PI + "<br/>");
+    // document.write(Math.random() + "<br/>");
+    // document.write(Math.round(2.39) + "<br/>");
+    // document.write(Math.pow(2.39,99) + "<br/>");
+    // document.write(Math.ceil(9.0000001) + "<br/>");
+    //
+    // let string = "Hello World!";
+    // // alert(string"ell".charAt(1));
+    //
+    // let nowDate=new Date();
+    // let nowDate1=new Date("Tue May 05 2015 12:00:00");
+    // let nowDate2=new Date(2015,4,5,12);
+    // document.write(nowDate+"<br/>");
+    // document.write(nowDate1+"<br/>");
+    // document.write(nowDate2+"<br/>");
+    // document.write(nowDate.getFullYear()+"<br/>");
+    // document.write(nowDate.getDate()+"<br/>");
+    // document.write(nowDate.getTime()+"<br/>");
+    // document.write(nowDate.getHours()+"<br/>");
+    // document.write(nowDate.toLocaleDateString()+"<br/>");
+    // document.write(nowDate.toLocaleTimeString()+"<br/>");
+
+    // let arr=new Array(1,2,3,4);
+    // document.write(arr.length+"<br/>");
+    // arr[4]=5;
+    // document.write(arr.length+"<br/>");
+    // for (let i = 0; i <arr.length ; i++) {
+    //     document.write(arr[i]+"\t");
+    // }
+    // document.write("<br/>");
+    // arr.length-=2;
+    // for (let i = 0; i <arr.length ; i++) {
+    //     document.write(arr[i]+"\t");
+    // }
+    // document.write("<br/>");
+    // document.write(arr.join("--")+"<br/>");
+    // document.write(arr.reverse()+"<br/>");
+    // document.write(arr.reverse().toString()+"<br/>");
+    // document.write(arr.toSource()+"<br/>");
+
+    window.onload = function () {
+        let oDiv = document.getElementById("div1");
+        oDiv.style.color = 'red';
+    };
+
+    window.onload = function () {
+        let oLi= document.getElementsByClassName('select');
+        oLi[1].style.color='red';
+    };
+    window.onload = function () {
+        let oDiv = document.querySelectorAll('.test');
+        oDiv[1].style.color='red';
+        oDiv[2].style.color='blue';
+        let oLi = document.querySelector('#list li:nth-child(3)');
+        oLi.style.color='blueviolet';
+    };
+    window.onload=function () {
+        let oInput=document.getElementsByName('status');
+        oInput[2].checked=true;
+        document.title='学历选项';
+    }
+    // window.onload = function () {
+    //     document.body.innerHTML="<input type='button' value='我的按钮'/><input type='button' value='按钮'/><input type='button' value='你的按钮'>"
+    //     let oBtn=document.getElementsByTagName("input");
+    //     oBtn[0].onclick=function () {
+    //         alert("共有"+oBtn.length+"个元素");
+    //     }
+    // }
+    // ;
+
+</script>
+<!--<button onclick="myfuncton1()">这是一个按钮</button>-->
+<!--<input type="button" value="单击" onclick="myfuncton2(3,4)"/>-->
+你的最高学历
+<label><input type="radio" name="status" value="本科"/>本科</label>
+<label><input type="radio" name="status" value="硕士"/>硕士</label>
+<label><input type="radio" name="status" value="博士"/>博士</label>
+<ul>
+    <li class="select">北京林业大学</li>
+    <li class="select">十分美丽</li>
+    <li class="select">我爱她</li>
+</ul>
+<div>北京林业大学</div>
+<div class="test">北京林业大学</div>
+<div class="test">北京林业大学</div>
+<div>北京林业大学</div>
+<div class="test">北京林业大学</div>
+<ul id="list">
+    <li>html</li>
+    <li>css</li>
+    <li>JavaScript</li>
+    <li>JQuery</li>
+    <li>jsp</li>
+</ul>
+<div id="app">
+    {{ message }}
+</div>
+<div id="app-2">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+<div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+</div>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: '页面加载于 ' + new Date().toLocaleString()
+        }
+    });
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true
+        }
+    })
+</script>
+<div id="div1">
+    北京林业大学
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function () {
+            let oBtn = document.getElementById("btn");
+            let oBtn2 = document.getElementById("btn2");
+            oBtn.onclick=function () {
+                let oUI= document.getElementById("list");
+                let oTxt= document.getElementById("txt");
+
+                let textNode = document.createTextNode(oTxt.value);
+                let oLi= document.createElement("li");
+                oLi.appendChild(textNode);
+                oUI.appendChild(oLi);
+            }
+            oBtn2.onclick=function () {
+                let oUI= document.getElementById("list");
+                let oTxt= document.getElementById("txt");
+
+                let textNode = document.createTextNode(oTxt.value);
+                let oLi= document.createElement("li");
+                oLi.appendChild(textNode);
+                oUI.insertBefore(oLi,oUI.firstChild);
+            }
+        }
+    </script>
+</head>
+<body>
+<ul id="list">
+    <li>北京林业大学</li>
+    <li>是个美丽的大学</li>
+    <li>北京林学</li>
+</ul>
+<input id="txt" type="text"/><input id="btn" type="button" value="后插入"/>
+<input id="btn2" type="button" value="前插入"/>
+</body>
+</html>

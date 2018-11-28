@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload=function () {
+            let oList=document.getElementById("list");
+            oList.onchange=function () {
+                let link=this.options[this.selectedIndex].value;
+                window.open(link);
+            }
+        }
+    </script>
+</head>
+<body>
+<select id="list">
+    <option value="http://www.baidu.com">百度</option>
+    <option value="http://www.sina.com">新浪</option>
+    <option value="http://www.qq.com">腾讯</option>
+</select>
+</body>
+</html>
