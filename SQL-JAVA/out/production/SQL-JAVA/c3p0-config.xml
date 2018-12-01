@@ -1,0 +1,46 @@
+<c3p0-config>
+
+    <default-config>
+
+        <property name="user">student</property>
+
+        <property name="password">student</property>
+
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+
+        <property name="jdbcUrl">jdbc:sqlserver://127.0.0.1:1433;databaseName=EDUCATION</property>
+
+
+
+        <property name="initialPoolSize">10</property>
+
+        <property name="acquireIncrement">5</property>
+
+        <property name="maxPoolSize">20</property>
+
+
+    </default-config>
+
+
+
+    <named-config name="SQLServer">
+        <property name="user">student</property>
+
+        <property name="password">student</property>
+
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+
+        <property name="jdbcUrl">jdbc:sqlserver://127.0.0.1:1433;databaseName=EDUCATION</property>
+
+
+
+        <property name="initialPoolSize">10</property>
+
+        <property name="acquireIncrement">5</property>
+
+        <property name="maxPoolSize">20</property>
+
+
+    </named-config>
+
+</c3p0-config>

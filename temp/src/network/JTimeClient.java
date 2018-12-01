@@ -17,7 +17,7 @@ public class JTimeClient {
             System.out.println("localhost:8000 connected......");
             out= new OutputStreamWriter(s.getOutputStream());
             int id = (int)(Math.random()*10);
-            String request = "Client"+id;
+            String request = "NetworkExperiment7.Client"+id;
             out.write(request,0,request.length());
             out.flush();
             System.out.println("发送的服务请求是:"+request);

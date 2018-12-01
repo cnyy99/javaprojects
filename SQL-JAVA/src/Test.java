@@ -6,99 +6,100 @@ public class Test {
     static ResultSet rs = null;         //枚举查询结果
 
     public static void main(String[] args) {
+        String sql = "select student.no,name\n" + //测试Search方法的sql语句
+                "from student\n" +
+                "where no in(select no \n" +
+                "from score \n" +
+                "group by no \n" +
+                "having count(*)>=2)\n";
+        DBCPTestSearch(sql);        //DBCP连接池  测试Search方法
+        C3P0TestSearch(sql);        //C3P0连接池  测试Search方法
+        DBCPTestUpdate();           //DBCP连接池  测试Update方法
         try {
-            conn = ConnectionSQL("EDUCATION", "student", "student");//连接数据库
-            stmt = conn.createStatement();              //建立statement
-//            printAll();                 //打印student表                                 //打印student表
-            TestInsert();//测试Insert方法
-            TestInsertP();//测试InsertP方法
-            TestSearch("select student.no,name\n" + //测试Search方法
-                    "from student\n" +
-                    "where no in(select no \n" +
-                    "from score \n" +
-                    "group by no \n" +
-                    "having count(*)>=2)\n");
-            TestUpdate();  //测试Update方法
+            Thread.sleep(5000);     //睡眠5s  ,有时间在SQL Server management stdio 中截图
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        C3P0TestUpdate();           //C3P0连接池  测试Update方法
+    }
 
 
+    public static boolean C3P0TestUpdate() {
+        boolean t = false;
+        try {
+            System.out.println("******C3P0******\n测试Update方法\n删除'李军'同学的学生信息前数据库数据如下所示");
+            conn = C3P0JdbcUtil.getConnection();    //从C3P0连接池中得到数据库连接
+            stmt = conn.createStatement();          //创建Statement
+            String sql = "delete from student where name='李军'"; //sql语句
+            printAll();
+            t = Update(sql);                        //执行SQL语句
+            System.out.println("测试Update方法\n删除'李军'同学的学生信息后数据库数据如下所示");
+            printAll();
+            System.out.println("\n");
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {     //关闭数据库相关
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } finally {
+            C3P0JdbcUtil.release(conn, stmt, rs);    //释放数据库连接相关
         }
-
-    }
-
-    public static boolean TestInsert() {
-        //构建student实例
-        Student stu = new Student("117", "陈楠", "男", "1997-07-07", "00161", 20);
-        System.out.println("测试Insert方法\n插入前数据库数据如下所示");
-        printAll();                 //打印student表
-        boolean t = Insert(stu);    //插入数据
-        System.out.println("插入后数据库数据如下所示");
-        printAll();                 //打印student表
         return t;
     }
 
-    public static boolean TestInsertP() {
-        //构建student实例
-        Student stuP = new Student("17P", "陈楠", "男", "1997-07-07", "00161", 20);
-        System.out.println("测试InsertP方法\n插入前数据库数据如下所示");
-        printAll();                 //打印student表
-        boolean t = InsertP(stuP);  //插入数据
-        System.out.println("插入后数据库数据如下所示");
-        printAll();                 //打印student表
-        return t;
-    }
-
-    public static boolean TestUpdate() {
-        String sql = "delete from student where name='陈楠'";
-        System.out.println("测试Update方法\n删除上述建立的学生信息前数据库数据如下所示");
-        printAll();
-        boolean t = Update(sql);
-        System.out.println("测试Update方法\n删除上述建立的学生信息后数据库数据如下所示");
-        printAll();
-        return t;
-    }
-
-    public static boolean TestSearch(String sql) {
+    public static boolean DBCPTestUpdate() {
+        boolean t = false;
         try {
-            rs = Search(sql);
-            System.out.println("测试Search方法\n查询至少选修两门课程的学生学号和姓名的结果如下");
+            System.out.println("******DBCP******\n测试Update方法\n删除'王芳'同学的学生信息前数据库数据如下所示");
+            conn = DbcpJdbcUtil.getConnection();    //从DBCP连接池中得到数据库连接
+            stmt = conn.createStatement();          //创建Statement
+            String sql = "delete from student where name='王芳'"; //sql语句
+            printAll();
+            t = Update(sql);                        //执行SQL语句
+            System.out.println("测试Update方法\n删除'王芳'同学的学生信息后数据库数据如下所示");
+            printAll();
+            System.out.println("\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbcpJdbcUtil.release(conn, stmt, rs);   //释放数据库连接相关
+        }
+        return t;
+    }
+
+    public static boolean C3P0TestSearch(String sql) {
+        try {
+            System.out.println("******C3P0******\n测试Search方法\n查询至少选修两门课程的学生学号和姓名的结果如下");
+            conn = C3P0JdbcUtil.getConnection();    //从C3P0连接池中得到数据库连接
+            stmt = conn.createStatement();          //创建Statement
             System.out.println("no  name");
-            while (rs.next()) {
+            rs = Search(sql);                       //执行SQL语句
+            while (rs.next()) {                     //打印结果
                 System.out.println(rs.getString("no") + " " + rs.getString("name"));
             }
-            System.out.println();
+            System.out.println("\n");
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            C3P0JdbcUtil.release(conn, stmt, rs);   //释放数据库连接相关
         }
         return rs != null;
     }
 
-
-    public static Connection ConnectionSQL(String dataBaseName, String user, String password) {
+    public static boolean DBCPTestSearch(String sql) {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //加载包
-            String url = "jdbc:sqlserver://127.0.0.1:1433;databaseName=" + dataBaseName +
-                    ";user=" + user + ";password=" + password;
-            return DriverManager.getConnection(url); //返回连接对象
-        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("******DBCP******\n测试Search方法\n查询至少选修两门课程的学生学号和姓名的结果如下");
+            conn = DbcpJdbcUtil.getConnection();    //从DBCP连接池中得到数据库连接
+            stmt = conn.createStatement();          //创建Statement
+            System.out.println("no  name");
+            rs = Search(sql);                       //执行SQL语句
+            while (rs.next()) {                     //打印结果
+                System.out.println(rs.getString("no") + " " + rs.getString("name"));
+            }
+            System.out.println("\n");
+        } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DbcpJdbcUtil.release(conn, stmt, rs);   //释放数据库连接相关
         }
-        return null;
+        return rs != null;
     }
 
     public static ResultSet Search(String sql) {
@@ -110,39 +111,6 @@ public class Test {
         return null;
     }
 
-    public static boolean Insert(Student stu) {
-        try {
-            //插入数据库的sql语句
-            String sql = "INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) VALUES(" + "\'" + stu.getNo() +
-                    "\',\'" + stu.getName() + "\',\'" + stu.getSex() + "\',\'" + stu.getBirth() +
-                    "\',\'" + stu.getClassno() + "\'," + stu.getAge() + ")";
-            stmt.executeUpdate(sql);    //执行sql语句
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean InsertP(Student stu) {
-        try {
-            //构建PreparedStatement
-            PreparedStatement preStatement = conn.prepareStatement(
-                    "INSERT INTO STUDENT(NO,NAME,SEX,BIRTH,CLASSNO,AGE) " +
-                            "VALUES(?,?,?,?,?,?)");
-            preStatement.setString(1, stu.getNo());
-            preStatement.setString(2, stu.getName());
-            preStatement.setString(3, stu.getSex());
-            preStatement.setString(4, stu.getBirth());
-            preStatement.setString(5, stu.getClassno());
-            preStatement.setInt(6, stu.getAge());
-            preStatement.executeUpdate();//执行sql语句
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     public static boolean Update(String sql) {
         try {

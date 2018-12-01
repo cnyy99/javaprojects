@@ -1,9 +1,9 @@
-/*
+package NetworkExperiment7;/*
 代码运行环境:
 1.Java version
     java version "9.0.4"
     Java(TM) SE Runtime Environment (build 9.0.4+11)
-    Java HotSpot(TM) 64-Bit Server VM (build 9.0.4+11, mixed mode)
+    Java HotSpot(TM) 64-Bit NetworkExperiment7.Server VM (build 9.0.4+11, mixed mode)
 
 2.开发工具及系统环境:
     IntelliJ IDEA 2018.1.7 (Ultimate Edition)
@@ -12,7 +12,7 @@
     Subscription is active until October 13, 2019
     For educational use only.
     JRE: 1.8.0_152-release-1136-b43 amd64
-    JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+    JVM: OpenJDK 64-Bit NetworkExperiment7.Server VM by JetBrains s.r.o
     Windows 10 10.0
 
  */
